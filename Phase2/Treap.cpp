@@ -128,17 +128,17 @@ class Treap{
         }
     
     //search, returns priority of key.. if key isnt stored, return -1 with helper function
-        float search(T key){ //WORKS!!
+        float search(T key){ 
            return helpSearch(root,key);
         }
    
     //Inserts the node with key k and priority p into the treap.
-        void insert(T userKey, float p){ //WORKS
+        void insert(T userKey, float p){ 
             root = insert(root, userKey,p); //could have used default parameter for root tpo not needd helper?
         }
 
     //Calls Insert function with key and root, updates root using helper function
-        void insert(T userKey){ //WORKS!!
+        void insert(T userKey){ 
             root = insert(root, userKey);
         }
    
@@ -167,14 +167,14 @@ class Treap{
         }
     
     //Returns the key after k in the tree. 
-       T successor(T key){ //WORKS
+       T successor(T key){ 
            return successor(key, root, root->key);
        }
 
     //Returns the key before k in the tree.
     //traverse from root left once then as far right as possible to 
     //get to the rightmost value of the left subtree 
-        T predecessor(T key){ //WORKS!!
+        T predecessor(T key){ 
             return predecessor(key, root, root->key);
         }
 
@@ -184,12 +184,12 @@ class Treap{
         }
 
     //Prints the keys of the tree in a preorder traversal using a helepr function
-        void preorder(){ //WORKS!
+        void preorder(){ 
             preorderPrint(root);
             cout<<endl;
         }
     //Prints the keys of the tree in an inorder traversal using a helper function
-        void inorder(){ //WORKS!
+        void inorder(){ 
             inorderPrint(root);
             cout<<endl;
         }
@@ -216,7 +216,7 @@ class Treap{
             cout << rootNode->key <<" rank: "<< rank(rootNode->key)<<endl;
             inorderTest(rootNode->right);
         }
-        void testInt(){ //WORKED
+        void testInt(){ 
             int size = 10;
             //float P[10] = {0.2,0.95,0.7,0.4,0.5,0.3,0.8,0.1,0.9,0.6};
             float* priorities = new float[size]();
@@ -240,7 +240,7 @@ class Treap{
            // printMe();
 
         }
-        void testChar(){ //WORKED
+        void testChar(){ 
             float P[10] = {0.2,0.95,0.7,0.4,0.5,0.3,0.8,0.1};
             int key = 65; // A
             char nextKey =0;
@@ -256,7 +256,7 @@ class Treap{
             cout<<"Successor is: "<< successor('E')<< endl; //F
             //printMe();
         }
-        void testStr(){ //WORKED
+        void testStr(){ 
             float P[10] = {0.2,0.95,0.7,0.4,0.5,0.3,0.8,0.1,0.9,0.6};
             string K[10] = {"A","AB","ABC","ABCD","ABCDE","ABCDEF","ABCDEFG","ABCDEFGH","ABCDEFGHI","ABCDEFGHIK"};
             for(int i=0; i<10; i++){
@@ -415,7 +415,7 @@ class Treap{
  
             //Inserts the node with key k, and optional p, checks to left and right down the tree,
     //inserts in correct spot then checks heap violations
-        TreapNode<T>* insert(TreapNode<T>* rootNode, T userKey,float p=(float)rand()/(float)RAND_MAX){ //WORKS make private
+        TreapNode<T>* insert(TreapNode<T>* rootNode, T userKey,float p=(float)rand()/(float)RAND_MAX){ 
                     
             if (root==nullptr){    // Insert the first node, if root is NULL. unecessary..
                 root = newNode(userKey,p);
@@ -635,7 +635,7 @@ class Treap{
     // Recursive function to search for a key in a given treap
     // simple algorithim I already used in insert, so I borrowed this function to save time
     // source: techiedelight
-        float helpSearch(TreapNode<T>* root, T key){ //WORKS!! make private
+        float helpSearch(TreapNode<T>* root, T key){ 
 
             // if the key is not present in the tree
             if (root == nullptr) {
@@ -656,120 +656,3 @@ class Treap{
             return helpSearch(root->right, key);
         }
 };
-/*
-
-void removeIndex(int removeIndex){
-	int rankError = 0;
-	int selectError = 0;
-	int searchError = 0;
-    Treap<int> X;
-	int size = 30;
-	float* priorities = new float[size]();
-	for (int i=size;i>=0;i--){
-		priorities[i] = rand()/(1.0 * RAND_MAX);
-		X.insert(i,priorities[i]);
-	}
-	for (int i=0;i<size;i+=removeIndex) X.remove(i);
-	X.inorderTest();
-	//X.printMe();
-
-
-	for (int i=1;i<size-size/removeIndex;i++){
-        
-        int part1Answer = i / removeIndex;
-		// Needed for round off error
-		int answer = i+(i+(i+(i+(i+(i + i / removeIndex)/removeIndex)/removeIndex)/removeIndex)/removeIndex)/removeIndex;
-
-		//printf("i is %d, Select %d, Rank %d, Search %d\n",i, answer, i-i/removeIndex, size-i);
-        //1 3 5 7 9 11 13 15 17 19
-        if(X.select(i) != answer){				
-			selectError++;
-			if(selectError < 40) cout << "i is " << i << " Select error after delete " << X.select(i)  << " should be " <<  answer << " or " << part1Answer << endl;
-		}
-		if (i%removeIndex) {
-			//cout << i << " is i" << endl;
-			if(X.rank(i) != i-i/removeIndex){
-                rankError++; 
-				if(rankError < 40) cout << "Rank error after delete " << X.rank(i) << " should be " << i << " - " << i-i/removeIndex << endl;
-			}
-			float search = X.search(i);
-            if(fabs(search - i) < 0.0001 || search != priorities[i]) searchError++;// cout << "Search error after delete" << endl;
-            X.remove(i);
-			X.insert(i,priorities[i]);
-		}
-	}
-	printErrors("Rank after delete",rankError);
-	printErrors("Select after delete",selectError);
-	printErrors("Search after delete",searchError);
-	cout << "Finished without failing" << endl << endl;
-}
-*/
-/*
-int main(){
-    Treap<int> T1;
-    T1.testInt();
-    string K[10] = {"A","B","C","D","E","F","G","H","I","K"};
-	float P[10] = {0.2,0.95,0.7,0.4,0.5,0.3,0.8,0.1,0.9,0.6};
-	
-	Treap<string> T1, T2(K,P,10), T3;
-	
-	for(int i=0; i<10; i++) T1.insert(K[i],P[i]);
-	// T1 and T2 should be identical trees
-	
-	cout << T2.search("C") << endl;
-	// Should output 0.7
-	
-	cout << T1.rank("C") << endl;
-	//Should output 3
-	
-	cout << T1.select(3) << endl;
-	//Should output C 
-	
-	T2.preorder();
-	//Should output "H A F D C B E G K I\n"
-	//There should be a single 
-	//newline after any of the order 
-	//method calls
-	
-	T2.inorder();
-	//Should output	A B C D E F G H I K\n
-	
-	cout << T2.remove("F") << endl;
-	//Should output 1
-	
-	T2.preorder();
-	//Should output H A D C B E G K I\n
-	
-	T2.inorder();
-	//Should output	A B C D E G H I K\n
-	
-	
-	cout << T2.remove("J") << endl;
-	//Should output 0
-	
-	cout <<T2.rank("G") << endl;
-	//Should output 6
-	
-	cout <<T1.successor("E")<<endl;
-	//Should output F
-	
-	cout <<T1.predecessor("B")<<endl;
-	//Should output A	
-    T3 = T1;
-    T3.remove("F");	
-	
-	cout <<T1.successor("E")<<endl;
-	//Should output F
-
-   Treap<int> X;
-	for (int i=1;i<1001000;i++) X.insert(i,rand()/(1.0 * RAND_MAX));
-	for (int i=1;i<1001000;i++) {
-		if(X.rank(i) != i) cout << "Rank error" << endl;
-		if(X.select(i) != i) cout << "Select error" << endl;
-	}  
-    Treap<char> car;
-    car.testChar();
-    car.printMe();
-	//Should be no output and should take seconds, not minutes
-	return 0;
-}*/

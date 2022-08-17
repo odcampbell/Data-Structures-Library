@@ -13,12 +13,19 @@ in your terminal, just type "make" into your terminal. )
 e.g. 
 
 make
+
 Phase1 1
 
 or 
 
 make
+
 Phase2 6
 
 Also included in each directory is a more basic test main that might be easier to alter. Each of them should run by just altering the makefile 
 to run them instead of the ones listed at the top of this readME.
+
+e.g.
+
+all: 
+	g++ Phase1Main.cpp -std=c++11  -o Phase1 

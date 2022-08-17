@@ -1,10 +1,10 @@
 # Data-Structures-Library
 
 When compiling with test files given by TA's
-(Phase1MainTest.cpp or Phase2Main.cpp), dont forget the
+( Phase1MainTest.cpp or Phase2Main.cpp ), don't forget the
 command line argument for which test to run!
 
-There are 6 tests for each phase that you can run and theyre chosen via command line arguments.
+There are 6 tests for each phase that you can run and they're chosen via command line arguments.
 If you forget the extra # (1-6) the program will not run successfully.
 
 ( We had to use a make file so the compilation is easy. After downloading the code and moving to the appropriate directory path
